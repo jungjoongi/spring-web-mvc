@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jungjoongi.estimate.dao.EstimateDao">
+	<insert id="insert" parameterType="com.jungjoongi.estimate.dto.EstimateReqDto">
+    	   INSERT INTO tbl_estimate(DATE, LIST, BUDGET, REMARK, ISYN, TYPE)
+     	   VALUES(#{date}, #{list}, #{budget}, #{isYn}, #{type})
+    </insert>
+</mapper>

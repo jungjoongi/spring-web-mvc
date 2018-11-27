@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<!-- JDBC 설정 정보  -->
+    <entry key="jdbc.url">jdbc:mysql://52.79.235.77:3306/projectdb</entry>
+    <entry key="jdbc.username">projectdb</entry>
+    <entry key="jdbc.password">1111</entry>
+</properties>

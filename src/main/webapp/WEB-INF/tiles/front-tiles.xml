@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+    "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+    
+<tiles-definitions>
+
+	 <!-- 프론트 -->  
+	<definition name="FrontLayout" template="/WEB-INF/tiles/front/layout/FrontLayout.jsp" >
+	    <put-attribute name="headCommon" value="/WEB-INF/tiles/front/common/HeadCommon.jsp" />
+	    <put-attribute name="gnbCommon" value="/WEB-INF/tiles/front/common/GnbCommon.jsp" />
+	    <put-attribute name="scriptCommon" value="/WEB-INF/tiles/front/common/ScriptCommon.jsp" />
+	    <put-attribute name="footerCommon" value="/WEB-INF/tiles/front/common/FooterCommon.jsp" />
+	</definition>
+	
+	 <!-- 프론트   -->
+    <definition name="FrontMyLayout" template="/WEB-INF/tiles/front/layout/FrontMyLayout.jsp" >
+        <put-attribute name="headCommon" value="/WEB-INF/tiles/front/common/HeadCommon.jsp" />
+        <put-attribute name="gnbCommon" value="/WEB-INF/tiles/front/common/GnbCommon.jsp" />
+        <put-attribute name="scriptCommon" value="/WEB-INF/tiles/front/common/ScriptCommon.jsp" />
+        <put-attribute name="footerCommon" value="/WEB-INF/tiles/front/common/MyFooterCommon.jsp" />
+    </definition>
+</tiles-definitions>
