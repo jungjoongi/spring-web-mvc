@@ -12,26 +12,56 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-	
+<!-- 	
+  <bean id="datasource" class="org.apache.commons.dbcp.BasicDataSource">
+	<property name="driverClassName" value="${jdbc.driver}"></property>
+	<property name="url" value="${jdbc.url}"></property>
+	<property name="username" value="${jdbc.username}"></property>
+	<property name="password" value="${jdbc.password}"></property>
+</bean>
+    
+    <context:property-placeholder 
+        location="classpath:jdbc.properties,
+                  classpath:aws.properties"/> -->
 
-    <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        
-        <property name="driverClassName"    value="com.mysql.jdbc.Driver" />
-        <property name="url"                value="jdbc:mysql://52.79.235.77:3306/projectdb" /> 
-        <property name="username"           value="projectdb" /> 
-        <property name="password"           value="1111" /> 
-        <property name="maxActive"          value="50" /> 
-        <property name="maxIdle"            value="10" /> 
-        <property name="maxWait"            value="10000" /> 
-        <property name="testWhileIdle"      value="true" /> 
-        <property name="testOnBorrow"       value="true" /> 
-        <property name="validationQuery"    value="select 1" />
-    </bean>  
     
     <!-- <bean id="dataSourceSpied" class="org.springframework.jndi.JndiObjectFactoryBean">
         <property name="jndiName">
         <value>java:comp/env/jdbc/osoDs</value>
         </property>
     </bean> -->
+    
+    <tx:annotation-driven />
+    
+    
+      <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	  	<property name="dataSource" 	ref="dataSource" />
+	  	<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>      
+   
+    <bean id="mapper" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.jungjoongi.**.dao" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+    
+     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+    
+    <aop:config>
+        <aop:advisor 
+            advice-ref="txAdvice" 
+            pointcut="execution(* com.jungjoongi.**.impl.*.*(..))"/>
+    </aop:config>
     
 </beans>

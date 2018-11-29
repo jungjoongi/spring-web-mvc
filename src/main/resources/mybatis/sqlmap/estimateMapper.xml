@@ -4,9 +4,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.jungjoongi.estimate.dao.EstimateDao">
-	<insert id="insert" parameterType="com.jungjoongi.estimate.dto.EstimateReqDto">
-    	   INSERT INTO tbl_estimate(DATE, LIST, BUDGET, REMARK, ISYN, TYPE)
-     	   VALUES(#{date}, #{list}, #{budget}, #{isYn}, #{type})
+<mapper namespace="com.jungjoongi.service.estimate.dao.EstimateDao">
+	<insert id="insert" parameterType="com.jungjoongi.service.estimate.dto.EstimateReqDto">
+    	INSERT INTO tbl_estimate(dates, list, budget, remark, isYn, types)
+		VALUES(#{dates}, #{list}, #{budget}, #{remark}, #{isYn}, #{types});
     </insert>
+    
+    <select id="list" resultType="com.jungjoongi.service.estimate.dto.EstimateDto">
+	    SELECT *
+		FROM tbl_estimate;
+    </select>
 </mapper>

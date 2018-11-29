@@ -1,16 +1,16 @@
 
-package com.jungjoongi.estimate.dto;
+package com.jungjoongi.service.estimate.dto;
 
 import java.sql.Date;
 
-public class EstimateReqDto {
-	int no;
-	Date date;
-	String list;
-	String budget;
-	String remark;
-	String isYn;
-	String type;
+public class EstimateDto {
+	private int no;
+	private Date dates;
+	private String list;
+	private String budget;
+	private String remark;
+	private String isYn;
+	private String types;
 	
 	public int getNo() {
 		return no;
@@ -18,11 +18,11 @@ public class EstimateReqDto {
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public Date getDate() {
-		return date;
+	public Date getDates() {
+		return dates;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDates(Date dates) {
+		this.dates = dates;
 	}
 	public String getList() {
 		return list;
@@ -48,12 +48,11 @@ public class EstimateReqDto {
 	public void setIsYn(String isYn) {
 		this.isYn = isYn;
 	}
-	public String getType() {
-		return type;
+	public String getTypes() {
+		return types;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setTypes(String types) {
+		this.types = types;
 	}
-	
 	
 }

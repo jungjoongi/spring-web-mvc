@@ -19,6 +19,7 @@
 		 <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
+	<!-- @Aspect 어노테이션이 적용된 클래스를 로딩하여 클래스에 명시된 Advice 및 Pointcut 정보를 이용하여 알맞은 빈 객체에 Advice를 적용. -->
 	<aop:aspectj-autoproxy />
 	
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
