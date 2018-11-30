@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jungjoongi.service.estimate.dao.EstimateDao;
 import com.jungjoongi.service.estimate.dto.EstimateDto;
+import com.jungjoongi.service.estimate.dto.EstimatePayDto;
 import com.jungjoongi.service.estimate.dto.EstimateReqDto;
 import com.jungjoongi.service.estimate.service.EstimateService;
 
@@ -20,14 +21,14 @@ public class EstimateServiceImpl implements EstimateService {
 	}
 	
 	
-	public int EstimateInsert(EstimateReqDto estimateReqDto) {
+	public int estimateInsert(EstimateReqDto estimateReqDto) {
 		
 		return estimateDao.insert(estimateReqDto);
 	}
 
 
 	@Override
-	public List<EstimateDto> EstimateList() {
+	public List<EstimateDto> estimateList() {
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");		
 		List<EstimateDto> estimate = estimateDao.list();
@@ -37,6 +38,23 @@ public class EstimateServiceImpl implements EstimateService {
 		}
 		
 		return estimate;
+	}
+
+
+	public EstimatePayDto estimateListPay() {
+		
+		DecimalFormat formatter = new DecimalFormat("###,###");		
+		EstimatePayDto payList = estimateDao.listPay();
+		
+		Long total = payList.getTotal();
+		Long required = payList.getRequired();
+		Long completed = payList.getCompleted();
+		
+			payList.setReTotal(formatter.format(total));
+			payList.setReRequired(formatter.format(required));
+			payList.setReCompleted(formatter.format(completed));
+		
+		return payList;
 	}
 	
 	

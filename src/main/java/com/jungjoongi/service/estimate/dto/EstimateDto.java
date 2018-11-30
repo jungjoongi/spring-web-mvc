@@ -11,7 +11,16 @@ public class EstimateDto {
 	private String remark;
 	private String isYn;
 	private String types;
+	private String payTypes;
 	
+	
+	
+	public String getPayTypes() {
+		return payTypes;
+	}
+	public void setPayTypes(String payTypes) {
+		this.payTypes = payTypes;
+	}
 	public int getNo() {
 		return no;
 	}

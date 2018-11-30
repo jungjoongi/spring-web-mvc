@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jungjoongi.service.estimate.dto.EstimateDto;
+import com.jungjoongi.service.estimate.dto.EstimatePayDto;
 import com.jungjoongi.service.estimate.dto.EstimateReqDto;
 import com.jungjoongi.service.estimate.impl.EstimateServiceImpl;
 
@@ -37,8 +38,10 @@ public class EstimateController {
 		LOGGER.debug("CustConsultController.list() #START");
 		Map<String, Object> model = new HashMap<>();
 		
-		List<EstimateDto> list = estimateServiceImpl.EstimateList();
+		List<EstimateDto> list = estimateServiceImpl.estimateList();
+		EstimatePayDto listPay = estimateServiceImpl.estimateListPay();
 		model.put("list", list);
+		model.put("listPay", listPay);
 		
 		return new ModelAndView("view/estimate/view", model);
 	}
@@ -51,7 +54,7 @@ public class EstimateController {
 			EstimateReqDto estimateReqDto) {
 		Map<String, Object> model = new HashMap<>();
 		
-		if(estimateServiceImpl.EstimateInsert(estimateReqDto) > 0) {
+		if(estimateServiceImpl.estimateInsert(estimateReqDto) > 0) {
 			model.put("rt", "SUCCESS");
 		}
 		

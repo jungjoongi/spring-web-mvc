@@ -11,17 +11,17 @@ public class EstimateReqDto {
 	private String remark;
 	private String isYn;
 	private String types;
-	
+	private String payTypes;
 	public int getNo() {
 		return no;
 	}
 	public void setNo(int no) {
 		this.no = no;
 	}
-	public Date getDate() {
+	public Date getDates() {
 		return dates;
 	}
-	public void setDate(Date dates) {
+	public void setDates(Date dates) {
 		this.dates = dates;
 	}
 	public String getList() {
@@ -48,11 +48,17 @@ public class EstimateReqDto {
 	public void setIsYn(String isYn) {
 		this.isYn = isYn;
 	}
-	public String getType() {
+	public String getTypes() {
 		return types;
 	}
-	public void setType(String types) {
+	public void setTypes(String types) {
 		this.types = types;
+	}
+	public String getPayTypes() {
+		return payTypes;
+	}
+	public void setPayTypes(String payTypes) {
+		this.payTypes = payTypes;
 	}
 	
 }
