@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jungjoongi.service.estimate.dto.EstimateDto;
 import com.jungjoongi.service.estimate.dto.EstimatePayDto;
 import com.jungjoongi.service.estimate.dto.EstimateReqDto;
+import com.jungjoongi.service.estimate.dto.EstimateSelectDto;
 import com.jungjoongi.service.estimate.impl.EstimateServiceImpl;
 
 @Controller
@@ -56,6 +57,24 @@ public class EstimateController {
 		
 		if(estimateServiceImpl.estimateInsert(estimateReqDto) > 0) {
 			model.put("rt", "SUCCESS");
+		}
+		
+		return new ModelAndView("jsonView", model);
+	}
+	
+	@RequestMapping(value = {"/estimate/selectOne.json"}, method= {RequestMethod.POST})
+	public ModelAndView selsectOne(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session,
+			EstimateReqDto estimateReqDto) {
+		Map<String, Object> model = new HashMap<>();
+		
+		EstimateSelectDto result = estimateServiceImpl.estimateSelectOne(estimateReqDto); 
+		
+		if(result != null) {
+			model.put("rt", "SUCCESS");
+			model.put("list" , result);
 		}
 		
 		return new ModelAndView("jsonView", model);

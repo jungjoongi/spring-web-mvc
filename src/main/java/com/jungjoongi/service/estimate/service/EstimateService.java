@@ -5,9 +5,11 @@ import java.util.List;
 import com.jungjoongi.service.estimate.dto.EstimateDto;
 import com.jungjoongi.service.estimate.dto.EstimatePayDto;
 import com.jungjoongi.service.estimate.dto.EstimateReqDto;
+import com.jungjoongi.service.estimate.dto.EstimateSelectDto;
 
 public interface EstimateService {
 	int estimateInsert(EstimateReqDto estimateReqDto);
+	EstimateSelectDto estimateSelectOne(EstimateReqDto estimateReqDto);
 	List<EstimateDto> estimateList();
 	EstimatePayDto estimateListPay();
 }

@@ -15,6 +15,12 @@
 		FROM tbl_estimate;
     </select>
     
+    <select id="selectOne" resultType="com.jungjoongi.service.estimate.dto.EstimateSelectDto" parameterType="com.jungjoongi.service.estimate.dto.EstimateReqDto">
+	    SELECT *
+		FROM tbl_estimate
+		WHERE `no` = #{no}
+    </select>
+    
     <select id="listPay" resultType="com.jungjoongi.service.estimate.dto.EstimatePayDto">
 		SELECT truncate(sum(total.budget),0) as total
 			,truncate(sum((

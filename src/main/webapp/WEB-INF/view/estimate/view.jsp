@@ -1,6 +1,6 @@
 <tiles:insertDefinition name="FrontLayout">
 	<tiles:putAttribute name="scriptPage">
-
+	<script src="/spring-web-project/estimate/view.js"></script>
 
 	</tiles:putAttribute>
 
@@ -29,8 +29,8 @@
 						</tr>
 					</thead> 
 					<tbody style="width:100%;margin:auto;text-align:center;">
-			 		<c:forEach var="list" items="${list}">
-						<tr id="${list.no}" style="height:25px;"> 
+			 		<c:forEach var="list" items="${list}"> 
+						<tr id="${list.no}" style="height:25px;" onclick='estimateView.selectPop(${list.no})'> 
 							<td>${list.dates}</td>
 							<td>${list.types}</td>
 							<td>${list.list}</td>
@@ -86,63 +86,59 @@
 			</section>		
 		</div>
 	</div>
+	
+	<div id="modal" style="width:1000px;position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);background-color:wheat;border: 2px dotted currentColor;padding:10px;display:none;clear:both;">
+		<table style="width:100%;margin-bottom:50px;text-align:center;">
+			<thead style="width:100%;margin:auto;text-align:center;"> 
+				<tr>
+					<th>날짜</th>
+					<th>구분</th>
+					<th>세부항목</th>
+					<th>예산</th> 
+					<th>지출여부</th>
+					<th>할부여부</th>
+					<th>비고</th>
+				</tr>
+			</thead> 
+			<tbody style="width:100%;margin:auto;text-align:center;">
+				<tr style="height:25px;"> 
+					<td><input id="update_date" type="date"></td>
+					<td>
+						<select id="update_types">
+							<option value="갓피플">갓피플</option>
+							<option value="집">집</option>
+							<option value="결혼식">결혼식</option>
+							<option value="신혼여행">신혼여행</option>
+							<option value="인테리어">인테리어</option>
+							<option value="가전">가전</option>
+							<option value="부모님">부모님</option>
+							<option value="FFFF">기타</option>
+						</select>
+					</td>
+					<td><input id="update_list" type="text"></td>
+					<td><input id="update_budget" type="text" onclick="estimateView.comma(this);" onKeyup="estimateView.comma(this);"></td>
+					<td>
+						<select id="update_isYn">
+							<option value="지출완료">지출완료</option>
+							<option value="미지출">미지출</option>
+						</select>
+					</td> 
+					<td>
+					<select id="update_payTypes">
+							<option value="일시불">일시불</option>
+							<option value="할부">할부</option>
+							<option value="미정">미정</option>
+						</select>
+					</td>
+					<td><input id="update_remark" type="text"></td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="javascript:estimateView.close()" style="color:black;font-weight:bold;margin:auto;font-size: 20px;display:block;text-align: center;">수정하기</a>
+		<a href="javascript:estimateView.close()" style="float:right;color:black;font-weight:bold;margin-right:5px;font-size: 16px;">닫기</a>
+	</div>
 </body> 
-<script>
-var estimateView = {
-		submit : function() {
-			param = {
-					types : $("#type").val(),
-					date : $("#date").val(),
-					list : $("#list").val(),
-					budget : estimateView.removeComma(),
-					isYn : $("#isYn").val(), 
-					remark : $("#remark").val(),
-					payTypes : $("#payTypes").val()
-			}
-			
-			$.ajax({
-				url:"/spring-web-project/estimate/insert.json",
-				type:"POST",
-				data:param,
-				success: function(data) {
 
-		        	var rt = data.rt;
-		        	var rtMsg = data.rtMsg;
-		        	if(rt == 'SUCCESS') {
-		        		alert("입력완료")
-		        		location.reload();
-		        	} else {
-		        		alert("입력실패")
-		        	}
-		        }
-			}); 
-		},
-		comma : function(obj) {
-		    var str = "" + obj.value.replace(/,/gi,'');   
-		    var regx = new RegExp(/(-?\d+)(\d{3})/);  
-		    var bExists = str.indexOf(".",0);  
-		    var strArr = str.split('.');  
-		 
-		    while(regx.test(strArr[0])){  
-		        strArr[0] = strArr[0].replace(regx,"$1,$2");  
-		    }  
-		    if (bExists > -1)  {
-		        obj.value = strArr[0] + "." + strArr[1];  
-		    } else  {
-		        obj.value = strArr[0]; 
-		    }
-		},
-		removeComma : function() {
-			var n = $("#budget").val()
-			if ( typeof n == "undefined" || n == null || n == "" ) {
-		        return "";
-		    }
-		    var txtNumber = '' + n;
-		    return txtNumber.replace(/(,)/g, "");
-		}
-}
- 
-</script>
 	</tiles:putAttribute>
 
 </tiles:insertDefinition>
