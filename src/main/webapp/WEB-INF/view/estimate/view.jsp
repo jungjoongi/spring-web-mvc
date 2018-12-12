@@ -27,10 +27,10 @@
 							<th>할부여부</th>
 							<th>비고</th>
 						</tr>
-					</thead> 
+					</thead>  
 					<tbody style="width:100%;margin:auto;text-align:center;">
 			 		<c:forEach var="list" items="${list}"> 
-						<tr id="${list.no}" style="height:25px;" onclick='estimateView.selectPop(${list.no})'> 
+						<tr id="${list.no}" <c:if test='${list.isYn eq \'지출완료\'}'>class="isYn"</c:if>style="height:25px;border-bottom: 1px solid #eee;" onclick='estimateView.selectPop(${list.no})'>
 							<td>${list.dates}</td>
 							<td>${list.types}</td>
 							<td>${list.list}</td>
@@ -90,7 +90,7 @@
 	<div id="modal" style="width:1000px;position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);background-color:wheat;border: 2px dotted currentColor;padding:10px;display:none;clear:both;">
 		<table style="width:100%;margin-bottom:50px;text-align:center;">
 			<thead style="width:100%;margin:auto;text-align:center;"> 
-				<tr>
+				<tr> 
 					<th>날짜</th>
 					<th>구분</th>
 					<th>세부항목</th>
@@ -130,11 +130,13 @@
 							<option value="미정">미정</option>
 						</select>
 					</td>
-					<td><input id="update_remark" type="text"></td>
+					<td><input id="update_remark" type="text">
+					<input id="update_no" type="hidden"></td>
+					<td><a href="javascript:void(0)" id="delete-btn">삭제</a></td>
 				</tr>
 			</tbody>
 		</table>
-		<a href="javascript:estimateView.close()" style="color:black;font-weight:bold;margin:auto;font-size: 20px;display:block;text-align: center;">수정하기</a>
+		<a href="javascript:void(0)" id="update-btn" style="color:black;font-weight:bold;margin:auto;font-size: 20px;display:block;text-align: center;">수정하기</a>
 		<a href="javascript:estimateView.close()" style="float:right;color:black;font-weight:bold;margin-right:5px;font-size: 16px;">닫기</a>
 	</div>
 </body> 

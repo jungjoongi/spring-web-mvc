@@ -9,10 +9,25 @@
     	INSERT INTO tbl_estimate(dates, list, budget, remark, isYn, types, payTypes)
 		VALUES(#{dates}, #{list}, #{budget}, #{remark}, #{isYn}, #{types}, #{payTypes});
     </insert>
+
+	<update id="update" parameterType="com.jungjoongi.service.estimate.dto.EstimateReqDto">
+    	UPDATE tbl_estimate SET 
+    	dates = #{dates},
+    	list = #{list},
+    	budget = #{budget},
+    	remark = #{remark},
+    	isYn = #{isYn},
+    	types = #{types},
+    	payTypes = #{payTypes}
+    	WHERE `no` = #{no}
+    </update>
     
     <select id="list" resultType="com.jungjoongi.service.estimate.dto.EstimateDto">
 	    SELECT *
-		FROM tbl_estimate;
+		FROM tbl_estimate
+		ORDER BY isYn = "지출완료" desc,
+		dates asc
+		
     </select>
     
     <select id="selectOne" resultType="com.jungjoongi.service.estimate.dto.EstimateSelectDto" parameterType="com.jungjoongi.service.estimate.dto.EstimateReqDto">
@@ -20,6 +35,11 @@
 		FROM tbl_estimate
 		WHERE `no` = #{no}
     </select>
+    
+    <delete id="delete" parameterType="com.jungjoongi.service.estimate.dto.EstimateReqDto">
+	    DELETE FROM tbl_estimate
+		WHERE `no` = #{no}
+    </delete>
     
     <select id="listPay" resultType="com.jungjoongi.service.estimate.dto.EstimatePayDto">
 		SELECT truncate(sum(total.budget),0) as total

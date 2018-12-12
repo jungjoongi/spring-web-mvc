@@ -1,14 +1,21 @@
 var estimateView = {
 		submit : function() {
+			
+			if(isNaN(estimateView.removeComma($("#budget").val()))) {
+				alert("예산은 숫자만 입력가능")
+				return;
+			}
+			
 			param = {
 					types : $("#type").val(),
-					date : $("#date").val(),
+					dates : $("#date").val(),
 					list : $("#list").val(),
-					budget : estimateView.removeComma(),
+					budget : estimateView.removeComma($("#budget").val()),
 					isYn : $("#isYn").val(), 
 					remark : $("#remark").val(),
 					payTypes : $("#payTypes").val()
 			}
+			
 			
 			$.ajax({
 				url:"/spring-web-project/estimate/insert.json",
@@ -42,8 +49,8 @@ var estimateView = {
 		        obj.value = strArr[0]; 
 		    }
 		},
-		removeComma : function() {
-			var n = $("#budget").val()
+		removeComma : function(obj) {
+			var n = obj
 			if ( typeof n == "undefined" || n == null || n == "" ) {
 		        return "";
 		    }
@@ -71,8 +78,11 @@ var estimateView = {
 		        		$("#update_isYn").val(list.isYn)
 		        		$("#update_payTypes").val(list.payTypes)
 		        		$("#update_remark").val(list.remark)
+		        		$("#update_no").val(list.no)
 		        		$("#update_budget").trigger("click")
 		        		$("#modal").css("display", "block")
+		        		$("#update-btn").attr("href", "javascript:estimateView.update("+list.no+")")
+		        		$("#delete-btn").attr("href", "javascript:estimateView.delete("+list.no+")")
 		        		$('html, body').css({'overflow': 'hidden'});
 		        	} else {
 		        		alert("입력실패")
@@ -82,6 +92,61 @@ var estimateView = {
 		},
 		close : function() {
 			$("#modal").css("display", "none")
+			$("#update-btn").attr("href", "javascript:void(0)")
+			$("#delete-btn").attr("href", "javascript:void(0)")
 			$('html, body').css({'overflow': 'auto'});
+		},
+		update : function(paramNo) {
+			if(isNaN(estimateView.removeComma($("#update_budget").val()))) {
+				alert("예산은 숫자만 입력가능")
+				return;
+			}
+			param = {
+					types : $("#update_types").val(),
+					dates : $("#update_date").val(),
+					list : $("#update_list").val(),
+					budget : estimateView.removeComma($("#update_budget").val()),
+					isYn : $("#update_isYn").val(), 
+					remark : $("#update_remark").val(),
+					payTypes : $("#update_payTypes").val(),
+					no : paramNo
+			}
+			$.ajax({
+				url:"/spring-web-project/estimate/update.json",
+				type:"POST",
+				data:param,
+				success: function(data) {
+
+		        	var rt = data.rt;
+		        	var rtMsg = data.rtMsg;
+		        	if(rt == 'SUCCESS') {
+		        		alert("입력완료")
+		        		location.reload();
+		        	} else {
+		        		alert("입력실패")
+		        	}
+		        }
+			}); 
+		},
+		delete : function(paramNo) {
+			param = {
+					no : paramNo
+			}
+			$.ajax({
+				url:"/spring-web-project/estimate/delete.json",
+				type:"POST",
+				data:param,
+				success: function(data) {
+
+		        	var rt = data.rt;
+		        	var rtMsg = data.rtMsg;
+		        	if(rt == 'SUCCESS') {
+		        		alert("삭제완료")
+		        		location.reload();
+		        	} else {
+		        		alert("입력실패")
+		        	}
+		        }
+			}); 
 		}
 }

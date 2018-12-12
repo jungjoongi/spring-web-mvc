@@ -14,3 +14,4 @@
 **/aws.properties
 **/properties.xml
 !build.gradle
+/target/

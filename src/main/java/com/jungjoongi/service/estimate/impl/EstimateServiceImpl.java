@@ -1,10 +1,9 @@
 package com.jungjoongi.service.estimate.impl;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.jungjoongi.service.estimate.dao.EstimateDao;
@@ -23,17 +22,22 @@ public class EstimateServiceImpl implements EstimateService {
 		this.estimateDao = estimateDao;
 	}
 	
+	@Override
+	public int estimateUpdate(EstimateReqDto estimateReqDto) {
+		System.out.println(estimateReqDto.getDates());
+		return estimateDao.update(estimateReqDto);
+	}
 	
+	@Override
 	public int estimateInsert(EstimateReqDto estimateReqDto) {
-		
 		return estimateDao.insert(estimateReqDto);
 	}
 	
+	@Override
 	public EstimateSelectDto estimateSelectOne(EstimateReqDto estimateReqDto) {
 		
 		EstimateSelectDto estimate = estimateDao.selectOne(estimateReqDto);
 		estimate.setDates((estimate.getDates().substring(0, 10)));
-		System.out.println(estimate.getDates());
 		return estimate;
 	}
 
@@ -45,13 +49,15 @@ public class EstimateServiceImpl implements EstimateService {
 		List<EstimateDto> estimate = estimateDao.list();
 		
 		for (EstimateDto list : estimate) {
-			list.setBudget(formatter.format(Integer.parseInt(list.getBudget())).toString());
+			if(!StringUtils.isEmpty(list.getBudget())) {
+				list.setBudget(formatter.format(Integer.parseInt(list.getBudget())).toString());
+			}
 		}
 		
 		return estimate;
 	}
 
-
+	@Override
 	public EstimatePayDto estimateListPay() {
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");		
@@ -68,6 +74,9 @@ public class EstimateServiceImpl implements EstimateService {
 		return payList;
 	}
 	
-	
+	@Override
+	public int estimateDelete(EstimateReqDto estimateReqDto) {
+		return estimateDao.delete(estimateReqDto);
+	}
 	
 }

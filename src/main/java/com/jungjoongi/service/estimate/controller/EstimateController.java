@@ -62,6 +62,36 @@ public class EstimateController {
 		return new ModelAndView("jsonView", model);
 	}
 	
+	@RequestMapping(value = {"/estimate/update.json"}, method= {RequestMethod.POST})
+	public ModelAndView update(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session,
+			EstimateReqDto estimateReqDto) {
+		Map<String, Object> model = new HashMap<>();
+		
+		if(estimateServiceImpl.estimateUpdate(estimateReqDto) > 0) {
+			model.put("rt", "SUCCESS");
+		}
+		
+		return new ModelAndView("jsonView", model);
+	}
+	
+	@RequestMapping(value = {"/estimate/delete.json"}, method= {RequestMethod.POST})
+	public ModelAndView delete(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session,
+			EstimateReqDto estimateReqDto) {
+		Map<String, Object> model = new HashMap<>();
+		
+		if(estimateServiceImpl.estimateDelete(estimateReqDto) > 0) {
+			model.put("rt", "SUCCESS");
+		}
+		
+		return new ModelAndView("jsonView", model);
+	}
+	
 	@RequestMapping(value = {"/estimate/selectOne.json"}, method= {RequestMethod.POST})
 	public ModelAndView selsectOne(
 			HttpServletRequest request,

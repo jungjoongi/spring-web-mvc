@@ -9,6 +9,8 @@ import com.jungjoongi.service.estimate.dto.EstimateSelectDto;
 
 public interface EstimateService {
 	int estimateInsert(EstimateReqDto estimateReqDto);
+	int estimateUpdate(EstimateReqDto estimateReqDto);
+	int estimateDelete(EstimateReqDto estimateReqDto);
 	EstimateSelectDto estimateSelectOne(EstimateReqDto estimateReqDto);
 	List<EstimateDto> estimateList();
 	EstimatePayDto estimateListPay();
