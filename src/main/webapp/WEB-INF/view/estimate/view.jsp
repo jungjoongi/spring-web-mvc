@@ -76,8 +76,8 @@
 						<option value="일시불">일시불</option>
 						<option value="할부">할부</option>
 						<option value="미정">미정</option>
-					</select> 
-					<span>비고</span><input id="remark" type="text" style="width:240px;">
+					</select>  
+					<span>비고</span><input id="remark" type="text" style="width:200px;">
 					<a href="javascript:estimateView.submit();">입력</a>
 					<br>
 					<br>
@@ -87,57 +87,76 @@
 		</div>
 	</div>
 	
-	<div id="modal" style="width:1000px;position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);background-color:wheat;border: 2px dotted currentColor;padding:10px;display:none;clear:both;">
-		<table style="width:100%;margin-bottom:50px;text-align:center;">
-			<thead style="width:100%;margin:auto;text-align:center;"> 
-				<tr> 
-					<th>날짜</th>
-					<th>구분</th>
-					<th>세부항목</th>
-					<th>예산</th> 
-					<th>지출여부</th>
-					<th>할부여부</th>
-					<th>비고</th>
-				</tr>
-			</thead> 
-			<tbody style="width:100%;margin:auto;text-align:center;">
-				<tr style="height:25px;"> 
-					<td><input id="update_date" type="date"></td>
-					<td>
-						<select id="update_types">
-							<option value="갓피플">갓피플</option>
-							<option value="집">집</option>
-							<option value="결혼식">결혼식</option>
-							<option value="신혼여행">신혼여행</option>
-							<option value="인테리어">인테리어</option>
-							<option value="가전">가전</option>
-							<option value="부모님">부모님</option>
-							<option value="FFFF">기타</option>
-						</select>
-					</td>
-					<td><input id="update_list" type="text"></td>
-					<td><input id="update_budget" type="text" onclick="estimateView.comma(this);" onKeyup="estimateView.comma(this);"></td>
-					<td>
-						<select id="update_isYn">
-							<option value="지출완료">지출완료</option>
-							<option value="미지출">미지출</option>
-						</select>
-					</td> 
-					<td>
-					<select id="update_payTypes">
-							<option value="일시불">일시불</option>
-							<option value="할부">할부</option>
-							<option value="미정">미정</option>
-						</select>
-					</td>
-					<td><input id="update_remark" type="text">
-					<input id="update_no" type="hidden"></td>
-					<td><a href="javascript:void(0)" id="delete-btn">삭제</a></td>
-				</tr>
-			</tbody>
-		</table>
-		<a href="javascript:void(0)" id="update-btn" style="color:black;font-weight:bold;margin:auto;font-size: 20px;display:block;text-align: center;">수정하기</a>
-		<a href="javascript:estimateView.close()" style="float:right;color:black;font-weight:bold;margin-right:5px;font-size: 16px;">닫기</a>
+	<div id="modal" style="position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);background-color:wheat;border: 2px dotted currentColor;padding:10px;display:none;clear:both;">
+			
+			<table class="frm">
+					<colgroup>
+						<col width="195">
+						<col width="*">
+					</colgroup>
+					<tbody>
+						<tr>
+							<th>날짜</th>
+							<td>
+								<input id="update_date" type="date" style="width:125px;">
+							</td>
+						</tr>
+						<tr>
+							<th>구분</th>
+							<td>
+								<select id="update_types">
+									<option value="갓피플">갓피플</option>
+									<option value="집">집</option>
+									<option value="결혼식">결혼식</option>
+									<option value="신혼여행">신혼여행</option>
+									<option value="인테리어">인테리어</option>
+									<option value="가전">가전</option>
+									<option value="부모님">부모님</option>
+									<option value="FFFF">기타</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>세부항목</th>
+							<td><input id="update_list" type="text"></td>
+						</tr>
+						<tr>
+							<th>예산</th>
+							<td><input id="update_budget" type="text" onclick="estimateView.comma(this);" onKeyup="estimateView.comma(this);" style="width:90px"></td>
+						</tr>
+						<tr>
+							<th>지출여부</th>
+							<td>
+								<select id="update_isYn">
+									<option value="지출완료">지출완료</option>
+									<option value="미지출">미지출</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>할부여부</th>
+							<td>
+								<select id="update_payTypes">
+									<option value="일시불">일시불</option>
+									<option value="할부">할부</option>
+									<option value="미정">미정</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>비고</th>
+							<td>
+								<input id="update_remark" type="text">
+								<input id="update_no" type="hidden"> 
+							</td>
+						</tr>
+					</tbody>
+				</table>  
+		<div class="pop-btn-group">
+			<a href="javascript:void(0)" id="update-btn" style="color: black;font-weight: bold;font-size: 20px;display: block;text-align: center;margin: 20px 0 20px 0;background: #b1b1b1;">수정하기</a>
+			<a href="javascript:void(0)" id="delete-btn" style="color:red;font-weight:bold;font-size:16px;">삭제하기</a>
+			<a href="javascript:estimateView.close()" style="float:right;color:black;font-weight:bold;margin-right:5px;font-size: 16px;">닫기</a>
+		</div>
 	</div>
 </body> 
 

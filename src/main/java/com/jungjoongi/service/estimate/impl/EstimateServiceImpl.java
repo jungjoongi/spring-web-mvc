@@ -24,7 +24,6 @@ public class EstimateServiceImpl implements EstimateService {
 	
 	@Override
 	public int estimateUpdate(EstimateReqDto estimateReqDto) {
-		System.out.println(estimateReqDto.getDates());
 		return estimateDao.update(estimateReqDto);
 	}
 	
