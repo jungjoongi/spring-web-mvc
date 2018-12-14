@@ -66,7 +66,6 @@ var estimateView = {
 				type:"POST",
 				data:param,
 				success: function(data) {
-					console.log(data)
 		        	var rt = data.rt;
 		        	var rtMsg = data.rtMsg;
 		        	var list = data.list
