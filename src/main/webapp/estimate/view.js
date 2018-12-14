@@ -92,9 +92,13 @@ var estimateView = {
 		},
 		close : function() {
 			$("#modal").css("display", "none")
+			$(".delete-form").css("display", "none")
 			$("#update-btn").attr("href", "javascript:void(0)")
 			$("#delete-btn").attr("href", "javascript:void(0)")
 			$('html, body').css({'overflow': 'auto'});
+		},
+		deleteBtn : function() {
+			$(".delete-form").css("display", "block")
 		},
 		update : function(paramNo) {
 			if(isNaN(estimateView.removeComma($("#update_budget").val()))) {

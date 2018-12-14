@@ -5,9 +5,9 @@
             <ul class="footer-menu">
                 <!-- <li></li> -->
             </ul>
-            <address class="address">
-                <span class="addr">정준기 <span class="info">Seoul.Korea</span></span>
-                <span class="info">jungjoongi.com</span>
+            <address class="address"> 
+                <!-- <span class="addr">정준기 <span class="info">Seoul.Korea</span></span> -->
+                <span class="info">https://jungjoongi.com</span>
             </address>
             <div class="copyright">Copyright© 2018 joongi. All rights reserved.</div>
         </div>

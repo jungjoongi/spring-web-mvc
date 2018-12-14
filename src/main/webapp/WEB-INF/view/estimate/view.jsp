@@ -154,8 +154,13 @@
 				</table>  
 		<div class="pop-btn-group">
 			<a href="javascript:void(0)" id="update-btn" style="color: black;font-weight: bold;font-size: 20px;display: block;text-align: center;margin: 20px 0 20px 0;background: #b1b1b1;">수정하기</a>
-			<a href="javascript:void(0)" id="delete-btn" style="color:red;font-weight:bold;font-size:16px;">삭제하기</a>
+			<a href="javascript:estimateView.deleteBtn()" id="delete-Yn" style="color:red;font-weight:bold;font-size:16px;">삭제하기</a>
 			<a href="javascript:estimateView.close()" style="float:right;color:black;font-weight:bold;margin-right:5px;font-size: 16px;">닫기</a>
+		</div>
+		<div class="delete-form" style="display:none;position: absolute;background: white;z-index: 2;height: calc(100% - 100px);top: 0;left: 0;padding: 50px;width: calc(100% - 100px);">
+			<h1 style="font-size: 24px;text-align: center;font-weight: bold;">정말로 삭제하시겠습니까?</h1>
+			<a href="javascript:void(0)" id="delete-btn" style="color: red;font-weight: bold;font-size: 20px;display: block;text-align: center;margin: 20px 0 20px 0;background: #b1b1b1;">삭제하기</a>
+			<a href="javascript:estimateView.close()" style="color: black;font-weight: bold;font-size: 20px;display: block;text-align: center;margin: 20px 0 20px 0;background: #b1b1b1;">닫기</a>
 		</div>
 	</div>
 </body> 
