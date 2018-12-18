@@ -1,6 +1,8 @@
 <tiles:insertDefinition name="FrontLayout">
 	<tiles:putAttribute name="scriptPage">
 	<script src="/spring-web-project/estimate/view.js"></script>
+	
+
 
 	</tiles:putAttribute>
 
@@ -11,6 +13,7 @@
 	<tiles:putAttribute name="contentAttr">
 	
 	<c:set var="payList" value="${listPay}"/>
+	<c:set var="memId" value="${memId}"/>
 <body>
 	<div id="container" class="main">
 		<section class="visual">
@@ -30,6 +33,7 @@
 					</thead>  
 					<tbody style="width:100%;margin:auto;text-align:center;">
 			 		<c:forEach var="list" items="${list}"> 
+			 		<c:if test="${list.memId eq memId}">
 						<tr id="${list.no}" <c:if test='${list.isYn eq \'지출완료\'}'>class="isYn"</c:if>style="height:25px;border-bottom: 1px solid #eee;" onclick='estimateView.selectPop(${list.no})'>
 							<td>${list.dates}</td>
 							<td>${list.types}</td>
@@ -39,6 +43,7 @@
 							<td>${list.payTypes}</td>
 							<td>${list.remark}</td>
 						</tr>
+			 		</c:if>
 					</c:forEach>
 					</tbody>
 				</table>

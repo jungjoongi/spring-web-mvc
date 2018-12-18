@@ -6,8 +6,8 @@
 
 <mapper namespace="com.jungjoongi.service.estimate.dao.EstimateDao">
 	<insert id="insert" parameterType="com.jungjoongi.service.estimate.dto.EstimateReqDto">
-    	INSERT INTO tbl_estimate(dates, list, budget, remark, isYn, types, payTypes)
-		VALUES(#{dates}, #{list}, #{budget}, #{remark}, #{isYn}, #{types}, #{payTypes});
+    	INSERT INTO tbl_estimate(dates, list, budget, remark, isYn, types, payTypes, mem_id)
+		VALUES(#{dates}, #{list}, #{budget}, #{remark}, #{isYn}, #{types}, #{payTypes}, #{memId});
     </insert>
 
 	<update id="update" parameterType="com.jungjoongi.service.estimate.dto.EstimateReqDto">
@@ -22,9 +22,10 @@
     	WHERE `no` = #{no}
     </update>
     
-    <select id="list" resultType="com.jungjoongi.service.estimate.dto.EstimateDto">
+    <select id="list" resultType="com.jungjoongi.service.estimate.dto.EstimateDto" parameterType="com.jungjoongi.service.auth.dto.LoginInfoDto">
 	    SELECT *
 		FROM tbl_estimate
+		WHERE mem_id = #{memId}
 		ORDER BY isYn = "지출완료" desc,
 		dates asc
 		
@@ -41,7 +42,7 @@
 		WHERE `no` = #{no}
     </delete>
     
-    <select id="listPay" resultType="com.jungjoongi.service.estimate.dto.EstimatePayDto">
+    <select id="listPay" resultType="com.jungjoongi.service.estimate.dto.EstimatePayDto" parameterType="com.jungjoongi.service.auth.dto.LoginInfoDto">
 		SELECT truncate(sum(total.budget),0) as total
 			,truncate(sum((
 				select c.budget 
@@ -54,6 +55,7 @@
 				where c.`no` = total.`no` 
 				and c.isYn = "미지출")),0) as required  
 		FROM tbl_estimate total
+		WHERE mem_id = #{memId}
     </select>
     
     

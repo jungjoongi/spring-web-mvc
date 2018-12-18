@@ -32,5 +32,6 @@
 <!-- 	</typeAliases> -->
 	<mappers>
 	 	<mapper resource="mybatis/sqlmap/estimateMapper.xml" />
+	 	<mapper resource="mybatis/sqlmap/loginMapper.xml" />
 	</mappers>
 </configuration>

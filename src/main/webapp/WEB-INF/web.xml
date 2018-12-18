@@ -15,7 +15,12 @@ version="3.0">
         <param-name>log4jConfiguration</param-name>
         <param-value>classpath:log4j2.xml</param-value>
     </context-param> -->
-  
+
+    <listener>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
+ 
+    
     <servlet>
    	    <description>Spring MVC Dispatcher</description>
 		<servlet-name>spring</servlet-name>

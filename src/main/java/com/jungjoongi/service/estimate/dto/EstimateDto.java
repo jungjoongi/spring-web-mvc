@@ -12,9 +12,16 @@ public class EstimateDto {
 	private String isYn;
 	private String types;
 	private String payTypes;
+	private String memId;
 	
 	
 	
+	public String getMemId() {
+		return memId;
+	}
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
 	public String getPayTypes() {
 		return payTypes;
 	}

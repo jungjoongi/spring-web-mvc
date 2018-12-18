@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
+import com.jungjoongi.service.auth.dto.LoginInfoDto;
 import com.jungjoongi.service.estimate.dao.EstimateDao;
 import com.jungjoongi.service.estimate.dto.EstimateDto;
 import com.jungjoongi.service.estimate.dto.EstimatePayDto;
@@ -42,10 +43,10 @@ public class EstimateServiceImpl implements EstimateService {
 
 
 	@Override
-	public List<EstimateDto> estimateList() {
+	public List<EstimateDto> estimateList(LoginInfoDto info) {
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");		
-		List<EstimateDto> estimate = estimateDao.list();
+		List<EstimateDto> estimate = estimateDao.list(info);
 		
 		for (EstimateDto list : estimate) {
 			if(!StringUtils.isEmpty(list.getBudget())) {
@@ -57,18 +58,27 @@ public class EstimateServiceImpl implements EstimateService {
 	}
 
 	@Override
-	public EstimatePayDto estimateListPay() {
+	public EstimatePayDto estimateListPay(LoginInfoDto info) {
 		
 		DecimalFormat formatter = new DecimalFormat("###,###");		
-		EstimatePayDto payList = estimateDao.listPay();
-		
+		EstimatePayDto payList = estimateDao.listPay(info);
+		if(payList == null) {
+			
+			System.out.println(payList);
+			EstimatePayDto emptyList = new EstimatePayDto();
+			emptyList.setReTotal("0");
+			emptyList.setReRequired("0");
+			emptyList.setReCompleted("0");
+
+			return emptyList;
+		}
 		Long total = payList.getTotal();
 		Long required = payList.getRequired();
 		Long completed = payList.getCompleted();
 		
-			payList.setReTotal(formatter.format(total));
-			payList.setReRequired(formatter.format(required));
-			payList.setReCompleted(formatter.format(completed));
+		payList.setReTotal((total == null) ? "0" : formatter.format(total));
+		payList.setReRequired((required == null) ? "0" : formatter.format(required));
+		payList.setReCompleted((completed == null) ? "0" : formatter.format(completed));
 		
 		return payList;
 	}

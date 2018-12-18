@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jungjoongi.service.auth.dto.LoginInfoDto;
 import com.jungjoongi.service.estimate.dto.EstimateDto;
 import com.jungjoongi.service.estimate.dto.EstimatePayDto;
 import com.jungjoongi.service.estimate.dto.EstimateReqDto;
@@ -38,9 +39,14 @@ public class EstimateController {
 			HttpSession session) {
 		LOGGER.debug("CustConsultController.list() #START");
 		Map<String, Object> model = new HashMap<>();
-		
-		List<EstimateDto> list = estimateServiceImpl.estimateList();
-		EstimatePayDto listPay = estimateServiceImpl.estimateListPay();
+		if(session.getAttribute("loginInfo") == null) {
+			return new ModelAndView("redirect:/login.do");
+		}
+		LoginInfoDto info = (LoginInfoDto)session.getAttribute("loginInfo");
+		List<EstimateDto> list = estimateServiceImpl.estimateList(info);
+		EstimatePayDto listPay = estimateServiceImpl.estimateListPay(info);
+		System.out.println(info);
+		model.put("memId", info.getMemId());
 		model.put("list", list);
 		model.put("listPay", listPay);
 		
@@ -55,6 +61,13 @@ public class EstimateController {
 			EstimateReqDto estimateReqDto) {
 		Map<String, Object> model = new HashMap<>();
 		
+		if(session.getAttribute("loginInfo") == null) {
+			return new ModelAndView("redirect:/login.do");
+		}
+		
+		LoginInfoDto info = (LoginInfoDto)session.getAttribute("loginInfo");
+		estimateReqDto.setMemId(info.getMemId());
+		System.out.println("인서트아이디"+estimateReqDto.getMemId());
 		if(estimateServiceImpl.estimateInsert(estimateReqDto) > 0) {
 			model.put("rt", "SUCCESS");
 		}

@@ -12,6 +12,16 @@ public class EstimateReqDto {
 	private String isYn;
 	private String types;
 	private String payTypes;
+	private Long memId;
+	
+	
+	
+	public Long getMemId() {
+		return memId;
+	}
+	public void setMemId(Long memId) {
+		this.memId = memId;
+	}
 	public int getNo() {
 		return no;
 	}
