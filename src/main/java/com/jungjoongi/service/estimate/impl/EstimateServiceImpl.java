@@ -12,6 +12,8 @@ import com.jungjoongi.service.estimate.dto.EstimateDto;
 import com.jungjoongi.service.estimate.dto.EstimatePayDto;
 import com.jungjoongi.service.estimate.dto.EstimateReqDto;
 import com.jungjoongi.service.estimate.dto.EstimateSelectDto;
+import com.jungjoongi.service.estimate.dto.SaveMemoDto;
+import com.jungjoongi.service.estimate.dto.SaveMemoReqDto;
 import com.jungjoongi.service.estimate.service.EstimateService;
 
 @Service
@@ -86,6 +88,16 @@ public class EstimateServiceImpl implements EstimateService {
 	@Override
 	public int estimateDelete(EstimateReqDto estimateReqDto) {
 		return estimateDao.delete(estimateReqDto);
+	}
+
+	@Override
+	public int saveMemo(SaveMemoReqDto saveMemoReqDto) {
+		return estimateDao.saveMemo(saveMemoReqDto);
+	}
+	
+	@Override
+	public SaveMemoDto selectMemo(LoginInfoDto info) {
+		return estimateDao.selectMemo(info);
 	}
 	
 }

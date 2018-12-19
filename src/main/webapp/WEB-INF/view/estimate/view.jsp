@@ -14,20 +14,24 @@
 	
 	<c:set var="payList" value="${listPay}"/>
 	<c:set var="memId" value="${memId}"/>
+	<c:set var="memMemo" value="${memMemo}"/>
 <body>
 	<div id="container" class="main">
 		<section class="visual">
 			<div class="visual-cont">
-			<h2 style="margin-bottom:30px;text-align: center;">예산테이블</h2>
+			<h2 style="margin-bottom:5px;text-align: center;">메모</h2>
+			<textarea id="memoText" onKeyDown="javascript:estimateView.keyup(this, ${memId})" style="width:calc(100% - 52px);min-height:150px;resize:none;margin-bottom:20px;padding:12px;box-sizing:border-box;">${memMemo}</textarea>
+			<a id="memoBtn_${memId}" href="javascript:void(0)" style="border: 2px dotted #ffc3c3;color: #ff8a8a;font-weight: bold;padding: 64px 8px;float: right;">입력</a> 
+			<h2 style="margin-bottom:20px;text-align: center;">예산테이블</h2>
 				<table style="width:100%;margin-bottom:50px;text-align:center;">
 					<thead style="width:100%;margin:auto;text-align:center;"> 
-						<tr>
-							<th>날짜</th>
-							<th>구분</th>
-							<th>세부항목</th>
-							<th>예산</th> 
-							<th>지출여부</th>
-							<th>할부여부</th>
+						<tr> 
+							<th style="min-width:100px;">날짜</th>
+							<th style="min-width:80px;">구분</th>
+							<th style="min-width:120px;">세부항목</th>
+							<th style="min-width:80px;">예산</th> 
+							<th style="min-width:70px;">지출여부</th>
+							<th style="min-width:60px;">할부여부</th>
 							<th>비고</th>
 						</tr>
 					</thead>  
@@ -71,6 +75,8 @@
 					</select>
 					<span>날짜  </span><input id="date" type="date" style="width:120px;">
 					<span>예산  </span><input id="budget" type="text" style="width:100px;" onkeyup="estimateView.comma(this);" onchange="estimateView.comma(this);">
+					<br>
+					<br>
 					<span>지출여부  </span>
 					<select id="isYn">
 						<option value="미지출">미지출</option>
@@ -82,8 +88,8 @@
 						<option value="할부">할부</option>
 						<option value="미정">미정</option>
 					</select>  
-					<span>비고</span><input id="remark" type="text" style="width:200px;">
-					<a href="javascript:estimateView.submit();">입력</a>
+					<span>비고</span><input id="remark" type="text" style="width:200px;"> 
+					<a href="javascript:estimateView.submit();" style="color: black;border: 1px dotted #444444;padding: 2px;">입력</a>
 					<br>
 					<br>
 					<br>

@@ -20,6 +20,8 @@ import com.jungjoongi.service.estimate.dto.EstimateDto;
 import com.jungjoongi.service.estimate.dto.EstimatePayDto;
 import com.jungjoongi.service.estimate.dto.EstimateReqDto;
 import com.jungjoongi.service.estimate.dto.EstimateSelectDto;
+import com.jungjoongi.service.estimate.dto.SaveMemoDto;
+import com.jungjoongi.service.estimate.dto.SaveMemoReqDto;
 import com.jungjoongi.service.estimate.impl.EstimateServiceImpl;
 
 @Controller
@@ -45,9 +47,11 @@ public class EstimateController {
 		LoginInfoDto info = (LoginInfoDto)session.getAttribute("loginInfo");
 		List<EstimateDto> list = estimateServiceImpl.estimateList(info);
 		EstimatePayDto listPay = estimateServiceImpl.estimateListPay(info);
+		SaveMemoDto saveMemo = estimateServiceImpl.selectMemo(info);
 		model.put("memId", info.getMemId());
 		model.put("list", list);
 		model.put("listPay", listPay);
+		model.put("memMemo", saveMemo.getMemMemo());
 		
 		return new ModelAndView("view/estimate/view", model);
 	}
@@ -116,6 +120,26 @@ public class EstimateController {
 		if(result != null) {
 			model.put("rt", "SUCCESS");
 			model.put("list" , result);
+		}
+		
+		return new ModelAndView("jsonView", model);
+	}
+	
+	@RequestMapping(value = {"/estimate/saveMemo.json"}, method= {RequestMethod.POST})
+	public ModelAndView saveMemo(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session,
+			SaveMemoReqDto saveMemoReqDto) {
+		Map<String, Object> model = new HashMap<>();
+		LoginInfoDto info = (LoginInfoDto)session.getAttribute("loginInfo");
+		saveMemoReqDto.setMemId(info.getMemId());
+		int result = estimateServiceImpl.saveMemo(saveMemoReqDto); 
+		
+		if(result > 0) {
+			model.put("rt", "SUCCESS");
+		} else {
+			model.put("rt", "FFFF");
 		}
 		
 		return new ModelAndView("jsonView", model);

@@ -7,11 +7,15 @@ import com.jungjoongi.service.estimate.dto.EstimateDto;
 import com.jungjoongi.service.estimate.dto.EstimatePayDto;
 import com.jungjoongi.service.estimate.dto.EstimateReqDto;
 import com.jungjoongi.service.estimate.dto.EstimateSelectDto;
+import com.jungjoongi.service.estimate.dto.SaveMemoDto;
+import com.jungjoongi.service.estimate.dto.SaveMemoReqDto;
 
 public interface EstimateService {
 	int estimateInsert(EstimateReqDto estimateReqDto);
 	int estimateUpdate(EstimateReqDto estimateReqDto);
 	int estimateDelete(EstimateReqDto estimateReqDto);
+	int saveMemo(SaveMemoReqDto saveMemoReqDto);
+	SaveMemoDto selectMemo(LoginInfoDto info);
 	EstimateSelectDto estimateSelectOne(EstimateReqDto estimateReqDto);
 	List<EstimateDto> estimateList(LoginInfoDto info);
 	EstimatePayDto estimateListPay(LoginInfoDto info);

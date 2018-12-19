@@ -21,6 +21,12 @@
     	payTypes = #{payTypes}
     	WHERE `no` = #{no}
     </update>
+
+	<update id="saveMemo" parameterType="com.jungjoongi.service.estimate.dto.SaveMemoReqDto">
+    	UPDATE tbl_member SET 
+    	mem_memo = #{memMemo}
+    	WHERE mem_id = #{memId}
+    </update>
     
     <select id="list" resultType="com.jungjoongi.service.estimate.dto.EstimateDto" parameterType="com.jungjoongi.service.auth.dto.LoginInfoDto">
 	    SELECT *
@@ -28,7 +34,12 @@
 		WHERE mem_id = #{memId}
 		ORDER BY isYn = "지출완료" desc,
 		dates asc
-		
+    </select>
+    
+    <select id="selectMemo" resultType="com.jungjoongi.service.estimate.dto.SaveMemoDto" parameterType="com.jungjoongi.service.auth.dto.LoginInfoDto">
+	    SELECT mem_memo
+		FROM tbl_member
+		WHERE mem_id = #{memId}
     </select>
     
     <select id="selectOne" resultType="com.jungjoongi.service.estimate.dto.EstimateSelectDto" parameterType="com.jungjoongi.service.estimate.dto.EstimateReqDto">

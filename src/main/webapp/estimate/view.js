@@ -151,5 +151,45 @@ var estimateView = {
 		        	}
 		        }
 			}); 
+		},
+		keyup : function(e, seq) {
+			$(e).on("keyup", function() {
+				$("#memoBtn_"+seq).attr("href", "javascript:estimateView.saveMemo("+seq+")");
+				$("#memoBtn_"+seq).css("background", "#fff7ef")
+				
+			})
+				
+		},
+		saveMemo : function(seq) {
+			var memo = $("#memoText").val()
+			param = {
+				memMemo : memo
+			}
+			$.ajax({
+				url : "/spring-web-project/estimate/saveMemo.json",
+				type : "post",
+				data : param,
+				success : function(data) {
+					
+					if(data.rt == "SUCCESS") {
+						$("#memoBtn_"+seq).css("background", "")
+						$("#memoBtn_"+seq).attr("href", "javascript:void(0)");
+					} else {
+						alert("입력실패")
+						location.reload();
+					}
+				}
+			
+			})
 		}
 }
+
+
+
+
+
+
+
+
+
+
