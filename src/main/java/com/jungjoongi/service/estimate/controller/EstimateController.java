@@ -45,7 +45,6 @@ public class EstimateController {
 		LoginInfoDto info = (LoginInfoDto)session.getAttribute("loginInfo");
 		List<EstimateDto> list = estimateServiceImpl.estimateList(info);
 		EstimatePayDto listPay = estimateServiceImpl.estimateListPay(info);
-		System.out.println(info);
 		model.put("memId", info.getMemId());
 		model.put("list", list);
 		model.put("listPay", listPay);
@@ -67,7 +66,6 @@ public class EstimateController {
 		
 		LoginInfoDto info = (LoginInfoDto)session.getAttribute("loginInfo");
 		estimateReqDto.setMemId(info.getMemId());
-		System.out.println("인서트아이디"+estimateReqDto.getMemId());
 		if(estimateServiceImpl.estimateInsert(estimateReqDto) > 0) {
 			model.put("rt", "SUCCESS");
 		}

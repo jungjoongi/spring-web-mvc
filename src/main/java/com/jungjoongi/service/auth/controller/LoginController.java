@@ -57,7 +57,6 @@ public class LoginController {
 			HttpServletResponse response,
 			HttpSession session) {
 		Map<String, Object> model = new HashMap<>();
-		System.out.println(session.getAttribute("loginInfo"));
 		if(session.getAttribute("loginInfo") != null) {
 			model.put("rt", "0001");
 			model.put("rtMsg", "이미 로그인 되어있습니다.");
@@ -73,6 +72,27 @@ public class LoginController {
 		}
 		model.put("rt", "FFFF");
 		model.put("rtMsg", "로그인 실패");
+		return new ModelAndView("jsonView", model);
+	}
+	
+	@RequestMapping(value = {"/loginExcute.json"}, method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView loginExcute(
+			HttpServletRequest request,
+			HttpServletResponse response,
+			HttpSession session) {
+		Map<String, Object> model = new HashMap<>();
+		if(session.getAttribute("loginInfo") != null) {
+			model.put("rt", "0000");
+			model.put("rtMsg", "notNull");
+			model.put("link", "/spring-web-project/logout.do");
+			model.put("html", "로그아웃");
+			return new ModelAndView("jsonView", model);
+		} else {
+			model.put("rt", "0001");
+			model.put("rtMsg", "Null");
+			model.put("link", "/spring-web-project/login.do");
+			model.put("html", "로그인");
+		}
 		return new ModelAndView("jsonView", model);
 	}
 	

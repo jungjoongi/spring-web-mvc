@@ -18,8 +18,9 @@ var login = {
 				
 				if(data.rt != "FFFF") {
 					location.href=data.location;
+				} else {
+					alert(data.rtMsg)
 				}
-				
 			}
 			
 		})
