@@ -135,6 +135,9 @@ h2.title.t-notice {background-image: url('../images/bg-notice.png');}
 .main #content .mobile:before {content: ''; position: absolute; z-index: 1; bottom: 0; left: 0; width: 100%; height: 201px; background-color: #fff;}
 .main #content .guide {width: 100%; padding: 0 0 60px; background: #eceff8 url('../images/bg-main-guide.png') no-repeat 50% 0;}
 .main #content .service {width: 100%; padding: 0 0 100px; background: #3c8dd7 url('../images/bg-main-service.png') no-repeat 50% 0; background-size: cover;}
+.main .memoBox {display:inline-block;width:calc(100%/4 - 4px);}
+.main .memoBox textarea {width:100%;min-height:400px;resize:none;padding:12px;box-sizing:border-box;}
+.main .memoBox a {border: 2px dotted #ffc3c3;color: #ff8a8a;font-weight: bold;width:100%;box-sizing: border-box;padding: 10px;text-align:center;display:block}
 .main .isYn {background:#fff7ef}
 .visual-cont {position: relative; overflow: hidden; max-width: 1200px; margin: 0 auto; margin-bottom: 50px;}
 .visual-cont tr:hover {background:#EEE}

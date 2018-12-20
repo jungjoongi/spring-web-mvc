@@ -1,3 +1,5 @@
+var count = 2;
+var checkCnt = 0;
 var estimateView = {
 		submit : function() {
 			
@@ -156,9 +158,30 @@ var estimateView = {
 			$(e).on("keyup", function() {
 				$("#memoBtn_"+seq).attr("href", "javascript:estimateView.saveMemo("+seq+")");
 				$("#memoBtn_"+seq).css("background", "#fff7ef")
-				
 			})
-				
+			count = 2;
+			
+			setTimeout(function() {
+				if(checkCnt > 0) {
+					clearTimeout(cntFn);
+				}
+		    },1000);
+			
+			var cntFn = setInterval(function(){
+				checkCnt = 1;
+				if (count==00){
+					isCnt = false;
+					count = 2;
+					checkCnt = 0;
+					clearInterval(cntFn);
+					estimateView.saveMemo(seq);
+				}
+				count -= 1;  // 1씩 감소
+				if (count<10){
+					count = "0"+count;  // 9->09로
+				}
+				$("#count").html(count)
+			},1000);
 		},
 		saveMemo : function(seq) {
 			var memo = $("#memoText").val()
@@ -172,8 +195,13 @@ var estimateView = {
 				success : function(data) {
 					
 					if(data.rt == "SUCCESS") {
+						$("#saveMsg").css("top","0px")
 						$("#memoBtn_"+seq).css("background", "")
 						$("#memoBtn_"+seq).attr("href", "javascript:void(0)");
+						
+						setTimeout(function(){
+							$("#saveMsg").css("top","-20px")
+						},2000)
 					} else {
 						alert("입력실패")
 						location.reload();
@@ -182,6 +210,9 @@ var estimateView = {
 			
 			})
 		}
+		
+		
+		    
 }
 
 
