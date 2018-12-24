@@ -1,6 +1,6 @@
 <tiles:insertDefinition name="FrontLayout">
 	<tiles:putAttribute name="scriptPage">
-	<script src="/spring-web-project/estimate/view.js?var=1"></script>
+	<script src="/spring-web-project/estimate/view.js?ver=1"></script>
 	
 
 
@@ -14,7 +14,7 @@
 	
 	<c:set var="payList" value="${listPay}"/>
 	<c:set var="memId" value="${memId}"/>
-	<c:set var="memMemo" value="${memMemo}"/>
+	<c:set var="memo" value="${memMemo}"/>
 <body>
 	<div id="container" class="main">
 		<section class="visual">
@@ -22,20 +22,20 @@
 			<h1 id="count" style="display:none"></h1>
 				<h2 style="margin-bottom:5px;text-align: center;">메모</h2> 
 			<div class="memoBox">
-				<textarea id="memoText" onKeyDown="javascript:estimateView.keyup(this, ${memId})">${memMemo}</textarea>
-				<a id="memoBtn_${memId}" href="javascript:void(0)">입력</a>
+				<textarea id="memoText1" onKeyDown="javascript:estimateView.keyup(this, ${memId})">${memo.memMemo1}</textarea>
+				<a class="memoBtn_${memId}" href="javascript:void(0)">입력</a>
 			</div> 
 			<div class="memoBox">
-				<textarea id="memoText2" onKeyDown="javascript:estimateView.keyup(this, ${memId})">${memMemo}</textarea>
-				<a id="memoBtn2_${memId}" href="javascript:void(0)">입력</a>
+				<textarea id="memoText2" onKeyDown="javascript:estimateView.keyup(this, ${memId})">${memo.memMemo2}</textarea>
+				<a class="memoBtn_${memId}" href="javascript:void(0)">입력</a>
 			</div> 
 			<div class="memoBox">
-				<textarea id="memoText3" onKeyDown="javascript:estimateView.keyup(this, ${memId})">${memMemo}</textarea>
-				<a id="memoBtn3_${memId}" href="javascript:void(0)">입력</a>
+				<textarea id="memoText3" onKeyDown="javascript:estimateView.keyup(this, ${memId})">${memo.memMemo3}</textarea>
+				<a class="memoBtn_${memId}" href="javascript:void(0)">입력</a>
 			</div>  
 			<div class="memoBox">
-				<textarea id="memoText4" onKeyDown="javascript:estimateView.keyup(this, ${memId})">${memMemo}</textarea>
-				<a id="memoBtn4_${memId}" href="javascript:void(0)">입력</a>
+				<textarea id="memoText4" onKeyDown="javascript:estimateView.keyup(this, ${memId})">${memo.memMemo4}</textarea>
+				<a class="memoBtn_${memId}" href="javascript:void(0)">입력</a>
 			</div> 
 			<h2 style="margin-bottom:20px;text-align: center;">예산테이블</h2>
 				<table style="width:100%;margin-bottom:50px;text-align:center;">
@@ -188,7 +188,7 @@
 			<a href="javascript:estimateView.close()" style="color: black;font-weight: bold;font-size: 20px;display: block;text-align: center;margin: 20px 0 20px 0;background: #b1b1b1;">닫기</a>
 		</div>
 	</div>
-	<div id="saveMsg" style="width:100%;height:20px;background:#ff000061;position:fixed;top:-20px;transition:1s"><span style="width:100%;height:100%;color:white;font-weight:bold;display:block;text-align: center;">자동저장 완료</span></div>
+	<div id="saveMsg"><span>자동저장 완료</span></div>
 </body> 
 
 	</tiles:putAttribute>

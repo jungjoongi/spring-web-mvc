@@ -75,8 +75,8 @@ public class LoginController {
 		return new ModelAndView("jsonView", model);
 	}
 	
-	@RequestMapping(value = {"/loginExcute.json"}, method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView loginExcute(
+	@RequestMapping(value = {"/isLogin.json"}, method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView isLogin(
 			HttpServletRequest request,
 			HttpServletResponse response,
 			HttpSession session) {

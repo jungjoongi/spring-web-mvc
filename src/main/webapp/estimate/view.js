@@ -156,8 +156,8 @@ var estimateView = {
 		},
 		keyup : function(e, seq) {
 			$(e).on("keyup", function() {
-				$("#memoBtn_"+seq).attr("href", "javascript:estimateView.saveMemo("+seq+")");
-				$("#memoBtn_"+seq).css("background", "#fff7ef")
+				$(".memoBtn_"+seq).attr("href", "javascript:estimateView.saveMemo("+seq+")");
+				$(".memoBtn_"+seq).css("background", "#fff7ef")
 			})
 			count = 2;
 			
@@ -184,9 +184,15 @@ var estimateView = {
 			},1000);
 		},
 		saveMemo : function(seq) {
-			var memo = $("#memoText").val()
+			var memo1 = $("#memoText1").val()
+			var memo2 = $("#memoText2").val()
+			var memo3 = $("#memoText3").val()
+			var memo4 = $("#memoText4").val()
 			param = {
-				memMemo : memo
+				memMemo1 : memo1,
+				memMemo2 : memo2,
+				memMemo3 : memo3,
+				memMemo4 : memo4
 			}
 			$.ajax({
 				url : "/spring-web-project/estimate/saveMemo.json",
@@ -196,8 +202,8 @@ var estimateView = {
 					
 					if(data.rt == "SUCCESS") {
 						$("#saveMsg").css("top","0px")
-						$("#memoBtn_"+seq).css("background", "")
-						$("#memoBtn_"+seq).attr("href", "javascript:void(0)");
+						$(".memoBtn_"+seq).css("background", "")
+						$(".memoBtn_"+seq).attr("href", "javascript:void(0)");
 						
 						setTimeout(function(){
 							$("#saveMsg").css("top","-20px")

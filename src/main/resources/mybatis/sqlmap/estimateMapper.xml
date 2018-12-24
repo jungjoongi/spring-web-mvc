@@ -24,7 +24,10 @@
 
 	<update id="saveMemo" parameterType="com.jungjoongi.service.estimate.dto.SaveMemoReqDto">
     	UPDATE tbl_member SET 
-    	mem_memo = #{memMemo}
+    	mem_memo1 = #{memMemo1},
+    	mem_memo2 = #{memMemo2},
+    	mem_memo3 = #{memMemo3},
+    	mem_memo4 = #{memMemo4}
     	WHERE mem_id = #{memId}
     </update>
     
@@ -37,7 +40,7 @@
     </select>
     
     <select id="selectMemo" resultType="com.jungjoongi.service.estimate.dto.SaveMemoDto" parameterType="com.jungjoongi.service.auth.dto.LoginInfoDto">
-	    SELECT mem_memo
+	    SELECT mem_memo1, mem_memo2, mem_memo3, mem_memo4
 		FROM tbl_member
 		WHERE mem_id = #{memId}
     </select>

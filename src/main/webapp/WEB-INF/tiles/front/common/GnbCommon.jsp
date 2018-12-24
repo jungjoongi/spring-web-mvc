@@ -14,7 +14,7 @@
 
 <script>
 $.ajax({ 
-	url:"/spring-web-project/loginExcute.json",
+	url:"/spring-web-project/isLogin.json",
 	type:"post",
 	success : function(data) {
 		var rt = data.rt

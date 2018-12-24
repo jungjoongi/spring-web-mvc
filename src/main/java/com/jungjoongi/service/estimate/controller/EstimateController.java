@@ -51,7 +51,7 @@ public class EstimateController {
 		model.put("memId", info.getMemId());
 		model.put("list", list);
 		model.put("listPay", listPay);
-		model.put("memMemo", saveMemo.getMemMemo());
+		model.put("memMemo", saveMemo);
 		
 		return new ModelAndView("view/estimate/view", model);
 	}
