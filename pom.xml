@@ -166,7 +166,7 @@
            <artifactId>tomcat7-maven-plugin</artifactId>
            <version>2.2</version>
            <configuration>
-               <url>http://54.180.155.24:8888/manager/text</url>
+               <url>http://54.180.149.219:8888/manager/text</url>
                <path>/spring-web-project</path>
                <username>tomcat</username>
                <password>1111</password>

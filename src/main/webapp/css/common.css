@@ -142,7 +142,7 @@ h2.title.t-notice {background-image: url('../images/bg-notice.png');}
 #saveMsg {width:100%;height:20px;background:#ff000061;position:fixed;top:-20px;transition:1s;}
 #saveMsg span {width:100%;height:100%;color:white;font-weight:bold;display:block;text-align: center;}
 .visual-cont {position: relative; overflow: hidden; max-width: 1200px; margin: 0 auto; margin-bottom: 50px;}
-.visual-cont tr:hover {background:#EEE}
+.visual-cont .main-table tr:hover {background:#EEE}
 .visual-cont tr {cursor:pointer}
 .visual-cont span.ico-arrow {position: absolute; z-index: 1; bottom: 198px; left: 156px; width: 47px; height: 17px; background: url('../images/common.png') no-repeat -240px -120px;}
 .visual-cont span.ico-arrow:nth-child(3) {left: 204px;}

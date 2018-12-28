@@ -2,6 +2,7 @@
 <header id="header">
     <section class="section">
         <h1 class="logo"><a href="/spring-web-project/estimate/view.do" style="border: 1px solid #ffd8d8;padding: 10px;border-radius: 25px;color: #ff6666;">예산노트</a></h1>
+        <h1 class="logo" style="left:150px;"><a href="/spring-web-project/invitation/view.do" style="border: 1px solid #ffd8d8;padding: 10px;border-radius: 25px;color: #ff6666;">명단확인</a></h1>
         <nav id="nav">
             <ul class="gnb">
                 <li><a id="login" href="javascript:void(0);"></a></li>
@@ -9,7 +10,7 @@
             </ul>
         </nav>
     </section>
-</header>
+</header> 
 <!--// header end -->
 
 <script>
