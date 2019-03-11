@@ -18,25 +18,27 @@
 				<section class="visual">
 					<div class="visual-cont">
 						<h1 id="count" style="display:none"></h1>
-						<h2 style="margin-bottom:20px;text-align: center;">명단</h2>
-						<div style="position:relative;">
+						<h2 style="margin-bottom:20px;text-align: center;">축의금/선물 리스트</h2>
+						<div style="position:relative;"> 
 							<table class="main-table" style="width:100%;margin-bottom:50px;text-align:center;">
 								<thead style="width:100%;margin:auto;text-align:center;">
 									<tr>
-										<th style="min-width:100px;">구분</th>
-										<th style="min-width:80px;">이름</th>
-										<th style="min-width:120px;">비고</th>
-										<th style="min-width:80px;">지금여부</th>
+										<th>번호</th>
+										<th>이름</th>
+										<th>금액</th>
+										<th>비고</th> 
+										<th>참석여부</th>
 									</tr>
 								</thead>
 								<tbody style="width:100%;margin:auto;text-align:center;">
 									<%-- <c:forEach var="list" items="${list}">
 										<c:if test="${list.memId eq memId}"> --%>
 										<tr>
-										<td>친구</td>
+										<td>1</td>
 										<td>홍길동</td>
-										<td>대학</td>
-										<td>지급완료</td>
+										<td>50,000</td>
+										<td>드롱기</td>
+										<td>참석</td>
 										</tr>
 										<%-- </c:if>
 									</c:forEach> --%>
@@ -129,18 +131,13 @@
 					<section>
 						<div class="inputForm" style="margin:auto;text-align: center;">
 							<span>이름 </span><input id="ivt_name" type="text" placeholder="ex)홍길동" style="width:110px;">
-							<span>구분</span>
-							<select id="ivt_type">
-								<option value="평안교회">평안교회</option>
-								<option value="가족">가족</option>
-								<option value="친구">친구</option>
-								<option value="기타">기타</option>
-							</select>
+							<span>금액</span>
+							<input id="ivt_sum" type="text" placeholder="ex)1,000,000" style="width:150px;" onKeyup="invitation.comma(this);">
 							<span>비고</span><input id="ivt_remark" type="text" style="width:200px;">
-							<span>지급여부</span>
-							<select id="ivt_isGive">
-								<option value="지금완료">지급완료</option>
-								<option value="미지급">미지급</option>
+							<span>참석여부</span>
+							<select id="ivt_visit">
+								<option value="Y">참석</option>
+								<option value="N">미참석</option>
 							</select>
 							<a href="javascript:void(0);" style="color: black;border: 1px dotted #444444;padding: 2px;">입력</a>
 							<br>

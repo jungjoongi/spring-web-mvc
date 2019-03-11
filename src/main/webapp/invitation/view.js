@@ -1,6 +1,6 @@
 var count = 2;
 var checkCnt = 0;
-var estimateView = {
+var invitation = {
 		submit : function() {
 			
 			if(isNaN(estimateView.removeComma($("#budget").val()))) {
