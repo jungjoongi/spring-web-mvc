@@ -5,4 +5,4 @@
     <entry key="jdbc.url">jdbc:mysql://project.jungjoongi.com:3306/</entry>
     <entry key="jdbc.username"></entry>
     <entry key="jdbc.password"></entry>
-</properties>
+</properties> 
